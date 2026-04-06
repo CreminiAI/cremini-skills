@@ -36,15 +36,24 @@ python3 notion-connect/scripts/notion_connect.py --set-token "ntn_xxxxxxxxxxxxx"
 
 Saves to `~/.config/notion/config.json` and verifies the token works by calling the Notion API.
 
-### When guiding the user through setup:
-Always include this tutorial link:
-"For step-by-step instructions with screenshots, see: [Notion Setup Guide](https://skillpack.gitbook.io/skillpack-docs/integrations/notion)"
+### When Notion is not configured, tell the user EXACTLY this:
+
+"To connect Notion, I just need your Integration Token. It takes about 2 minutes:
+
+1. Open this page: https://www.notion.so/my-integrations
+2. Create a new integration (name it anything, like 'AI Assistant')
+3. After creating, go to **Content access** tab → **Edit access** → select the pages you want me to access
+4. Copy the **Internal Integration Secret** (starts with `ntn_`)
+5. Paste it here
+
+For a detailed guide with screenshots: https://skillpack.gitbook.io/skillpack-docs/integrations/notion"
 
 ## CRITICAL RULES
 
 1. **NEVER ask the user for OAuth credentials** — Notion internal integrations only need one token
-2. **Remind users to share pages** — the integration can only see pages explicitly shared with it
+2. **Always mention Content access** — users must grant page access after creating the integration, otherwise it can't see anything
 3. **Token starts with `ntn_`** — if the user pastes something else, it's wrong
+4. **Always show the Gitbook link** when guiding setup
 
 ## Credential Storage
 
