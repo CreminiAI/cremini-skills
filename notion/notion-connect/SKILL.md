@@ -36,8 +36,9 @@ python3 notion-connect/scripts/notion_connect.py --set-token "ntn_xxxxxxxxxxxxx"
 
 Saves to `~/.config/notion/config.json` and verifies the token works by calling the Notion API.
 
-### Show setup tutorial link:
-Tell the user: "For step-by-step instructions, see: https://skillpack.gitbook.io/skillpack-docs/integrations/notion"
+### When guiding the user through setup:
+Always include this tutorial link:
+"For step-by-step instructions with screenshots, see: [Notion Setup Guide](https://skillpack.gitbook.io/skillpack-docs/integrations/notion)"
 
 ## CRITICAL RULES
 
