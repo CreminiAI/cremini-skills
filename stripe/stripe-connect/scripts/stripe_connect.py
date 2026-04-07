@@ -83,8 +83,10 @@ def save_config(api_key: str, mode: str = "", account_id: str = "", account_name
 
 def verify_key(api_key: str) -> tuple[bool, str, str, str, str]:
     """Verify key by calling Stripe API. Returns (ok, mode, account_id, account_name, error)."""
+    # Use /v1/balance to verify — it works with both full secret keys and restricted keys
+    # (/v1/account requires extra permissions that restricted keys may not have)
     req = urllib.request.Request(
-        f"{STRIPE_API}/account",
+        f"{STRIPE_API}/balance",
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/x-www-form-urlencoded",
@@ -95,10 +97,22 @@ def verify_key(api_key: str) -> tuple[bool, str, str, str, str]:
         with urllib.request.urlopen(req, timeout=15) as resp:
             data = json.loads(resp.read().decode())
 
-        account_id = data.get("id", "")
-        account_name = data.get("settings", {}).get("dashboard", {}).get("display_name", "")
-        if not account_name:
-            account_name = data.get("business_profile", {}).get("name", "")
+        # Balance endpoint doesn't return account info, so try /v1/account as a bonus
+        account_id = ""
+        account_name = ""
+        try:
+            acct_req = urllib.request.Request(
+                f"{STRIPE_API}/account",
+                headers={"Authorization": f"Bearer {api_key}"},
+            )
+            with urllib.request.urlopen(acct_req, timeout=10) as acct_resp:
+                acct_data = json.loads(acct_resp.read().decode())
+                account_id = acct_data.get("id", "")
+                account_name = acct_data.get("settings", {}).get("dashboard", {}).get("display_name", "")
+                if not account_name:
+                    account_name = acct_data.get("business_profile", {}).get("name", "")
+        except Exception:
+            pass  # Restricted keys may not have account read permission — that's OK
 
         mode = "test" if api_key.startswith("sk_test_") or api_key.startswith("rk_test_") else "live"
 
