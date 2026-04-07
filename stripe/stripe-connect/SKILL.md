@@ -50,6 +50,20 @@ For a detailed guide: https://skillpack.gitbook.io/skillpack-docs/integrations/s
 3. **Recommend restricted keys** — always suggest read-only restricted keys for safety
 4. **Always show the Gitbook link** when guiding setup
 
+## When a Command Fails with "Permission denied" or 403
+
+The user's restricted key is missing permissions for that resource. Tell them:
+
+"Your API key doesn't have permission to access [resource]. To fix this:
+
+1. Go to https://dashboard.stripe.com/apikeys
+2. Find your restricted key and click the **pencil icon** (edit)
+3. Scroll to the **[resource category]** section (e.g. Core, Billing)
+4. Change the permission from **None** to **Read**
+5. Click **Save**
+
+Then try again. For a detailed guide, see: https://skillpack.gitbook.io/skillpack-docs/integrations/stripe"
+
 ## Credential Storage
 
 | File | Path |
