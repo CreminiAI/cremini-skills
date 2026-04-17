@@ -16,7 +16,7 @@ Use this order so the workflow stays fast:
 3. If the command fails because `skillpack-cli` is missing, install it with:
 
 ```bash
-npm install -g @cermini/skillpack-cli
+npm install -g @cremini/skillpack-cli
 ```
 
 4. After installation, rerun the same `skillpack-cli amazon product ...` command.

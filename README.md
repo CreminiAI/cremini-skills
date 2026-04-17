@@ -6,6 +6,9 @@ Open-source AI agent skills for [SkillPack](https://github.com/CreminiAI/skillpa
 
 | Skill | Description |
 |-------|-------------|
+| [amazon-product](amazon-product/) | Fetch Amazon product details by ASIN |
+| [amazon-search](amazon-search/) | Search Amazon products by keyword |
+| [amazon-keyword-search-volume](amazon-keyword-search-volume/) | Get Amazon keyword search volume for one or more keywords |
 | [notion](notion/) | Search, read, create, and manage Notion pages and databases |
 | [web-fetch](web-fetch/) | Fetch web pages via Chrome DevTools Protocol — JS rendering, zero dependencies |
 
