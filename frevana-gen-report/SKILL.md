@@ -1,6 +1,6 @@
 ---
 name: frevana-gen-report
-description: Generate final HTML through Frevana POST /report/generate from content plus a template ID. Use when the user wants backend-generated HTML, Frevana template rendering, or raw HTML output returned without post-processing.
+description: Generate final HTML using Frevana by combining your content with a selected template ID. Use this when you need server-side rendering through Frevana templates or want the system to return ready-to-use raw HTML without additional processing.
 ---
 
 # Frevana Report Generator
