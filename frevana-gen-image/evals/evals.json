@@ -1,0 +1,38 @@
+{
+  "skill_name": "frevana-gen-image",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "调用 Frevana 图片生成能力，使用 provider=openai、model=gpt-image-2，prompt 是“一个极简风格的咖啡机产品海报，暖色棚拍光影，适合电商首图”，返回生成结果的 JSON，并把它保存到 ./out/openai-product-image.json。",
+      "expected_output": "The run should use the Frevana image generation script with an OpenAI-compatible provider/model pair, return the API response metadata as JSON, and save the JSON output to the requested path.",
+      "files": [],
+      "expectations": [
+        "The solution uses Frevana's image generation flow rather than inventing another image API.",
+        "The request uses provider `openai` with model `gpt-image-2`.",
+        "The final result surfaces the returned `image_url` and preserves the JSON metadata."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我通过 Frevana 出一张插图：provider 用 gemini，model 用 gemini-3.1-flash-image-preview，quality=high，size=1024x1024，prompt 是“俯视角的 AI 数据分析工作台，漂浮的图表卡片，轻快明亮的 SaaS 插画风格”。只需要返回接口结果里的图片 URL 和使用的模型信息。",
+      "expected_output": "The run should call the Frevana image endpoint with the Gemini provider/model pair, include the requested quality and size values, and clearly return the generated image URL plus model metadata.",
+      "files": [],
+      "expectations": [
+        "The solution uses provider `gemini` with model `gemini-3.1-flash-image-preview`.",
+        "The solution sends the requested `quality` and `size` fields for the Gemini request.",
+        "The final answer clearly includes the returned `image_url` and model details."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "请调用 Frevana 图片生成能力，provider=openai，model=gpt-image-1.5，quality=high，size=1536x1024。prompt 是“高端护肤品玻璃瓶，半透明水花，干净留白的广告摄影”。结果请输出 JSON，并另存为 ./tmp/skincare-campaign.json。",
+      "expected_output": "The run should send a valid OpenAI request including quality and size, then print and save the normalized JSON response to the specified file path.",
+      "files": [],
+      "expectations": [
+        "The solution uses an allowed OpenAI model with the requested `quality` and `size` values.",
+        "The output is saved to `./tmp/skincare-campaign.json`.",
+        "The returned JSON includes `image_url`, `provider`, `model`, and `credits_consumed`."
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-API_URL="https://api.frevana.com/report/generate"
+API_URL="https://api-report.frevana.com/report/generate"
 TARGET_PLATFORM="generate_auto_formating_content"
 CONNECT_TIMEOUT="10"
 MAX_TIME="600"
